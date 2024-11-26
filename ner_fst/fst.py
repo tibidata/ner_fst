@@ -122,6 +122,9 @@ class FiniteStateTransducer:
         """
         results: List[Tuple[str, str]] = []
         tokens = input_text.split()
+
+        tokens = [token.strip(".") for token in tokens]
+
         buffer: List[str] = []
         category: str | None = None
 
