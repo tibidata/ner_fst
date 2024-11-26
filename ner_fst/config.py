@@ -39,6 +39,13 @@ class TransducerConfig:
             ],
             "initial_state": "q0",  # Define the initial state
             "transitions": [
+                # Recognize phone numbers
+                (
+                    "q0",
+                    r"(06|\+36)\d{2}[\s\-]?\d{3}[\s\-]?\d{4}",
+                    "q_phone",
+                    "PHONE_NUMBER",
+                ),
                 # Recognize numbers
                 ("q0", r"\d+", "q_number"),
                 # Recognize currency following a number
@@ -82,13 +89,11 @@ class TransducerConfig:
                     "EMAIL",
                 ),
                 # Recognize dates in MM/DD/YYYY format
-                ("q0", r"\d{2}/\d{2}/\d{4}", "q_date", "DATE"),
-                # Recognize phone numbers
                 (
                     "q0",
-                    r"(?:\+36|06)[\s\-]?\d{2}[\s\-]?\d{3}[\s\-]?\d{4}",
-                    "q_phone",
-                    "PHONE_NUMBER",
+                    r"(\d{4}[.\-]?\d{2}[.\-]?\d{2}|\d{2}[.\-]?\d{2}[.\-]?\d{4}|\d{2}/\d{2}/\d{4})",
+                    "q_date",
+                    "DATE",
                 ),
                 # Recognize URLs
                 (
