@@ -54,11 +54,29 @@ fst_config = TransducerConfig()
 fst = FiniteStateTransducer(config=fst_config)
 
 # Example input
-input_text = "Some example input text"
+input_text = """Some story about Jack Black he was born 01.10.2024. After 20 years of 
+learning he created his first email address: therealjacklback@gmail.com. With this he
+was able to call his brother on his phone number +36705681267. Now he lives in 1044, Budapest Kossuth utca 15. 
+He bought his first house for 1000 HUF. Now he is earning 5000 EUR daily on his webpage page: https://www.jackblack.com/theblack"""
 
 # Extract the entities
 output = fst(process="NER", input_text=input_text)
 ```
+
+### Expected output
+```python
+
+output = [('Jack Black', 'PERSON'),
+ ('01.10.2024', 'DATE'),
+ ('therealjacklback@gmail.com', 'EMAIL'),
+ ('+36705681267', 'PHONE_NUMBER'),
+ ('1044, Budapest Kossuth utca 15', 'ADDRESS'),
+ ('1000 HUF', 'PRICE'),
+ ('5000 EUR', 'PRICE'),
+ ('https://www.jackblack.com/theblack', 'URL')]
+
+```
+
 
 ### Default categories
 
